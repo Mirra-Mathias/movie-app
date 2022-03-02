@@ -1,0 +1,53 @@
+
+<div class="header">
+  <a href="index.html">
+    <img class="logo" src="../assets/img/logo.png" />
+  </a>
+</div>
+<input type="checkbox" class="openSidebarMenu" id="openSidebarMenu" />
+<label for="openSidebarMenu" class="sidebarIconToggle">
+  <div class="spinner diagonal part-1"></div>
+  <div class="spinner horizontal"></div>
+  <div class="spinner diagonal part-2"></div>
+</label>
+<div id="sidebarMenu">
+  <ul class="sidebarMenuInner">
+    <li><a href="#" target="_blank">Action</a></li>
+    <li><a href="#" target="_blank">Adventure</a></li>
+    <li><a href="#" target="_blank">Animation</a></li>
+    <li><a href="#" target="_blank">Comedy</a></li>
+    <li><a href="#" target="_blank">Crime</a></li>
+    <li><a href="#" target="_blank">Documentary</a></li>
+    <li><a href="#" target="_blank">Drama</a></li>
+  </ul>
+</div>
+
+<div id="center" class="main center">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <img class="details-img" src="{{movie?.poster_path}}" />
+      </div>
+      <div class="col-xs-12 col-sm-8">
+        <h2>{{movie?.original_title}}</h2>
+        <h3>{{movie?.tagline}}</h3>
+        <p class="meta-wrap">
+          <span class="rating">rating: {{movie?.vote_average}}</span>
+          <span class="meta" *ngFor="let langue of movie?.spoken_languages">
+            {{langue.name}}
+          </span>
+          <span class="meta"> / {{movie?.runtime}} min. / {{movie?.release_date | date: 'yyyy'}}</span>
+        </p>
+
+        <ul class="genres">
+          <li *ngFor="let genre of movie?.genres">{{genre.name}}</li>
+        </ul>
+      </div>
+
+    </div>
+    <!-- Fin partie spécifique home page -->
+
+  </div>
+</div>
