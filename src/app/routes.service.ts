@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Movie} from "./types";
+import {Movie, Genre} from "./types";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -29,5 +29,10 @@ export class RoutesService {
     console.log(`${this.baseUrl}movies\\${id}`)
     return this.http
       .get(`${this.baseUrl}movies\\${id}`)
+  }
+
+  getGenres(): Observable<Genre[]> {
+    return this.http
+      .get<Genre[]>(`${this.baseUrl}genres`)
   }
 }

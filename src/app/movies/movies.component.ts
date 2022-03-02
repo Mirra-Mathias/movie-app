@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import  { RoutesService } from "../routes.service";
-import { Movie} from "../types";
+import {Component, OnInit} from '@angular/core';
+import {RoutesService} from "../routes.service";
+import {Movie, Genre} from "../types";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-movies',
@@ -9,13 +10,32 @@ import { Movie} from "../types";
 })
 export class MoviesComponent implements OnInit {
 
-  movies: Movie[]= []
-  constructor(private route: RoutesService) { }
+  movies: Movie[] = []
+  genres: Genre[] = []
+
+  constructor(private routesService: RoutesService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
-    this.route.getMovies()
+
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.routesService.getMovies()
       .subscribe((data: Movie[]) => {
         this.movies = data;
+        console.log(data)
+        if (id) {
+          this.movies = this.movies.filter(e => {
+            if (e.genre_ids.includes(id)) {
+              return true
+            }
+            return false
+          })
+        }
+      })
+
+    this.routesService.getGenres()
+      .subscribe((data: Genre[]) => {
+        this.genres = data;
       })
   }
 
