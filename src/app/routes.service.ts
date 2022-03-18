@@ -26,7 +26,6 @@ export class RoutesService {
   }
 
   getCard(id: number): any {
-    console.log(`${this.baseUrl}movies\\${id}`)
     return this.http
       .get(`${this.baseUrl}movies\\${id}`)
   }
