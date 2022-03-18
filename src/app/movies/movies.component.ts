@@ -22,7 +22,6 @@ export class MoviesComponent implements OnInit {
     this.routesService.getMovies()
       .subscribe((data: Movie[]) => {
         this.movies = data;
-        console.log(data)
         if (id) {
           this.movies = this.movies.filter(e => {
             if (e.genre_ids.includes(id)) {
